@@ -1,23 +1,20 @@
 import React from 'react';
 
+import Toggle from '../../components/Toggle';
+import TopTracks from '../../components/TopTracks';
+
 class Artist extends React.Component {
   static defaultProps = {
     artist: {},
-    topTracks: [],
   };
 
   componentWillMount() {
     this.props.fetchArtist();
   }
 
-  _onClick = () => this.props.fetchTopTracks()
-
-  renderTrackLine = (track) => (
-    <li key={track.id} className="artist__track">{`${track.title} (${track.album.title})`}</li>
-  )
-
   render() {
     const { artist, topTracks } = this.props;
+    console.log('render Table');
     return (
       <div className="artist__wrapper">
         <div className="artist__picture">
@@ -27,12 +24,11 @@ class Artist extends React.Component {
           />
         </div>
         <h3 className="artist__name">{artist.name}</h3>
-        <button onClick={this._onClick}>
-          Fetch Top tracks
+        <button onClick={this.props.fetchTopTracks}>
+          Fetch Top Tracks
         </button>
-        <ul className="artist__top-tracks">
-          {topTracks && topTracks.map(this.renderTrackLine)}
-        </ul>
+        <Toggle />
+        <TopTracks />
       </div>
     );
   };
