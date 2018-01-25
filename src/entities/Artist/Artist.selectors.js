@@ -6,7 +6,6 @@ export const selectArtist = (state, artistId) => (
 
 export const selectArtistTopTracks = (state, artistId) => {
   const topTrackIds = state.artist.topTracks[artistId];
-  console.log(state);
 
   if (!topTrackIds) return [];
   return topTrackIds
