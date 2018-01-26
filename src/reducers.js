@@ -1,6 +1,6 @@
 // src/reducers.js
 
-import { combineReducers } from 'redux';
+import { combineReducers } from 'redux-immutable';
 import albumReducer from './entities/Album/Album.reducer';
 import artistReducer from './entities/Artist/Artist.reducer';
 import trackReducer from './entities/Track/Track.reducer';

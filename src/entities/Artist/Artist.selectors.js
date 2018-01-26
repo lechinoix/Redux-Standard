@@ -1,14 +1,21 @@
 // src/entities/Artist/Artist.selectors.js
 
+import { fromJS } from 'immutable';
+
 export const selectArtist = (state, artistId) => (
-  state.artist.byId[artistId]
+  state.get('artist').byId[artistId]
 );
 
 export const selectArtistTopTracks = (state, artistId) => {
-  const topTrackIds = state.artist.topTracks[artistId];
+  const topTrackIds = state.get('artist').topTracks[artistId];
 
   if (!topTrackIds) return [];
   return topTrackIds
-    .map((trackId) => (state.track.byId[trackId]))
-    .map((track) => ({ ...track, album: state.album.byId[track.album] }));
+    .map((trackId) => (state.getIn(['track', 'byId', String(trackId)])))
+    .map((track) => (track.merge(
+      fromJS({
+          album: state.getIn(['album', 'byId', String(track.get('album'))])
+        })
+      ))
+    );
 };

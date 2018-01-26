@@ -1,1 +1,1 @@
-export const selectToggle = (state) => state.toggle.isActive;
+export const selectToggle = (state) => state.get('toggle').isActive;
