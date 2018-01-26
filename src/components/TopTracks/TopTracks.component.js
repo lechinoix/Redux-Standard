@@ -7,6 +7,7 @@ class TopTracks extends React.Component {
 
   render() {
     const { topTracks } = this.props;
+    console.log('render topTracks');
     return (
       <ul className="artist__top-tracks">
         {topTracks && topTracks.map(this.renderTrackLine)}

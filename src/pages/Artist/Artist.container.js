@@ -9,7 +9,8 @@ import {
   selectArtist,
 } from '../../entities/Artist/Artist.selectors';
 import Artist from './Artist.component';
-  
+import { toJS } from '../../to-js';
+
 const mapStateToProps = (state) => ({
   artist: selectArtist(state, 27),
 });
@@ -22,4 +23,4 @@ const mapDispatchToProps = {
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Artist);
+)(toJS(Artist));
